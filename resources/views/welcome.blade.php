@@ -3,11 +3,19 @@
 @section('content')
 <div class="hero-section d-flex flex-column align-items-start justify-content-center text-white px-5">
     <h3 class="fontSize2 fw-light">Bienvenidos a</h3>  
-    <h1 class="fontSize1 fw-bold">AutoPerfecto</h1> 
+    <h2 class="fontSize1 fw-bold" style="font-family: 'Krona One', sans-serif;">AutoPerfecto</h2> 
     <h4 class="fontSize2 fw-light">Concesionario Personalizado</h4>
     <br>
+
+
     @auth
-        <a class="btn btn-primary rounded-pill px-4" href="{{ route('autos.index') }}">Continuar</a>
+        @if (Auth::user()->role === 'admin')
+            <a class="btn btn-primary rounded-pill px-4" href="{{ route('autos.index') }}">Continuar</a>
+        @endif
+                
+        @if (Auth::user()->role === 'cliente')
+                <a class="btn btn-primary rounded-pill px-4" href="{{ route('comparar.index') }}">Continuar</a>
+        @endif
     @endauth
 </div>
 

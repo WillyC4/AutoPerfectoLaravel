@@ -13,6 +13,11 @@ class Autos extends Model
         'marca',
         'modelo',
         'anio',
+        'precio',
+        'rendimiento',
+        'seguridad',
+        'tipo_traccion',
+        'potencia_hp',
+        'capacidad_maletero',
     ];
 }
-

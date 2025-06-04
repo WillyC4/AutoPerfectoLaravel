@@ -31,7 +31,6 @@
 
             <button type="submit" class="btn btn-primary w-100">Log in</button>
 
-            <!-- Validation errors -->
             @if ($errors->any())
             <div class="alert alert-danger mt-3">
                 <ul class="m-0">

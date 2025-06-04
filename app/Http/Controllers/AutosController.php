@@ -5,95 +5,79 @@ namespace App\Http\Controllers;
 use App\Models\Autos;
 use Illuminate\Http\Request;
 
-class AutosController extends Controller
+class AutosController
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $autos = Autos::latest()->paginate(3);
         return view('autos.indexAuto', compact('autos'))->with(request()->input('page'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    //------- vista para crear un nuevo auto -------
     public function create()
     {
         return view('autos.createAuto');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //------- almacenar un nuevo auto -------
     public function store(Request $request)
     {
-        //validate input
         $request->validate([
             'marca' => 'required|string|max:255',
             'modelo' => 'required|string|max:255',
             'anio' => 'required|integer|min:1886|max:' . date('Y'),
+            'precio' => 'nullable|numeric|min:0',
+            'rendimiento' => 'nullable|numeric|min:0',
+            'seguridad' => 'nullable|string',
+            'tipo_traccion' => 'nullable|string',
+            'potencia_hp' => 'nullable|integer|min:0',
+            'capacidad_maletero' => 'nullable|integer|min:0',
         ]);
 
-        //create a new auto
-        Autos::create([
-            'marca' => $request->input('marca'),
-            'modelo' => $request->input('modelo'),
-            'anio' => $request->input('anio'),
-        ]);
+        $requestData = $request->all();
 
-        //redirect the user and send a success message
-        return redirect()->route('autos.index')->with('success', 'Auto created successfully.');
+        Autos::create($requestData);
+
+        return redirect()->route('autos.index')->with('success', 'Auto registrado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //------- mostrar un auto -------
     public function show(Autos $auto)
     {
         return view('autos.showAuto', compact('auto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //------- editar un auto -------
     public function edit(Autos $auto)
     {
        return view('autos.editAuto', compact('auto'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //------- actualizar un auto -------
     public function update(Request $request, Autos $auto)
     {
-                 //validate input
-                 $request->validate([
-                    'marca' => 'required|string|max:255',
-                    'modelo' => 'required|string|max:255',
-                    'anio' => 'required|integer|min:1886|max:' . date('Y'),
-                ]);
-        
-                //create a new auto
-                $auto->update([
-                    'marca' => $request->input('marca'),
-                    'modelo' => $request->input('modelo'),
-                    'anio' => $request->input('anio'),
-                ]);
-        
-                //redirect the user and send a success message
-                return redirect()->route('autos.index')->with('success', 'Auto created successfully.');
+        $request->validate([
+            'marca' => 'required|string|max:255',
+            'modelo' => 'required|string|max:255',
+            'anio' => 'required|integer|min:1886|max:' . date('Y'),
+            'precio' => 'nullable|numeric|min:0',
+            'rendimiento' => 'nullable|numeric|min:0',
+            'seguridad' => 'nullable|string',
+            'tipo_traccion' => 'nullable|string',
+            'potencia_hp' => 'nullable|integer|min:0',
+            'capacidad_maletero' => 'nullable|integer|min:0',
+        ]);
+
+        $auto->update($request->all());
+
+        return redirect()->route('autos.index')->with('success', 'Auto actualizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+//------- eliminar un auto -------
     public function destroy(Autos $auto)
     {
-        //delete auto
         $auto->delete();
-        //Mensaje de Exito
-        return redirect()->route('autos.index')->with('success', 'Auto deleted successfully.');
+        return redirect()->route('autos.index')->with('success', 'Auto eliminado correctamente.');
     }
+
 }

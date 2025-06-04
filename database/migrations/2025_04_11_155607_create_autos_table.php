@@ -16,7 +16,14 @@ return new class extends Migration
             $table->string('marca');
             $table->string('modelo');
             $table->integer('anio');
-            $table->timestamps();    
+            $table->decimal('precio', 10, 2)->nullable();
+            $table->decimal('rendimiento', 5, 2)->nullable(); // Consumo de combustible (L/100 km)
+            $table->string('seguridad')->nullable();
+            $table->string('tipo_traccion')->nullable(); // AWD, FWD, RWD
+            $table->integer('potencia_hp')->nullable(); // Caballos de fuerza
+            $table->integer('capacidad_maletero')->nullable(); // Litros
+            $table->timestamps();
+            
         });
     }
 
