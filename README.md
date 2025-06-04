@@ -75,8 +75,10 @@ Accede a la aplicación → http://127.0.0.1:8000
 #### Uso del Proyecto
 
 El sistema proporciona una página web con autenticación, donde los usuarios pueden:  
-- **Iniciar sesión** para acceder a las funcionalidades.  
-- **Explorar los autos** registrados en la base de datos.  
+- **Iniciar sesión** para acceder a las funcionalidades.
+- **Administrar usuarios** cuentas admin y clientes.
+- **Explorar los autos** registrados en la base de datos.
+- **Comparar los autos** con diferentes parametros para la mejor selección.  
 - **Realizar operaciones CRUD** (Crear, Leer, Actualizar, Eliminar) sobre los vehículos.  
 - **Gestionar** la información desde una interfaz moderna y responsiva.  
 
