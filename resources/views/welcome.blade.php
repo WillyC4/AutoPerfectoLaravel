@@ -23,7 +23,7 @@
     .hero-section {
         background: url('{{ asset("images/Fondo.jpg") }}') no-repeat center center;
         background-size: cover;
-        height: 648px;
+        height: 683px;
         width: 100%;
         position: relative;
     }

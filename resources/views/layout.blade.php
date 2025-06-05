@@ -17,7 +17,7 @@
                     <a href="{{ route('autos.index') }}" class="text-white ml-3">Gestion de Vehículos</a>
                     <a href="{{ route('usuarios.index') }}" class="text-white ml-3">Gestion de Usuarios</a>
                 @endif
-                
+
                 @if (Auth::user()->role === 'admin' || Auth::user()->role === 'cliente')
                     <a href="{{ route('comparar.index') }}" class="text-white ml-3">Comparar</a>
                 @endif

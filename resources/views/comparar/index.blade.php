@@ -9,6 +9,7 @@
         <a href="{{ route('comparar.seguridad') }}" class="btn btn-primary w-100 py-3 my-3 mx-auto">Comparación de Seguridad</a>
         <a href="{{ route('comparar.segmento') }}" class="btn btn-primary w-100 py-3 my-3 mx-auto">Comparación por Segmento</a>
         <a href="{{ route('comparar.ranking') }}" class="btn btn-primary w-100 py-3 my-3 mx-auto">Ranking de Autos</a>
+        <a href="{{ route('comparar.precio') }}" class="btn btn-primary w-100 py-3 my-3 mx-auto">Busqueda Perfecta</a>
     </div>
 
     </div>

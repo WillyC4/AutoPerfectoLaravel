@@ -51,7 +51,7 @@ class ComparadorController
     {
         $criteriosSeleccionados = $request->input('criterios', ['seguridad']);
 
-        $rankingAutos = Autos::orderBy('seguridad', 'desc');
+        $rankingAutos = Autos::query();
 
         foreach ($criteriosSeleccionados as $criterio) {
             $rankingAutos->orderBy($criterio, ($criterio === 'precio' || $criterio === 'rendimiento') ? 'asc' : 'desc');
@@ -60,5 +60,18 @@ class ComparadorController
         $rankingAutos = $rankingAutos->limit(10)->get();
 
         return view('comparar.ranking_resultados', compact('rankingAutos', 'criteriosSeleccionados'));
+    }
+    //------------------ Reto ------------------//
+    public function compararPorPrecio(Request $request)
+    {
+        $precioBase = $request->input('precio');
+        $rango = $request->input('rango');
+        $prioridad = $request->input('prioridad');
+
+        $autos = Autos::whereBetween('precio', [$precioBase - $rango, $precioBase + $rango])
+                    ->orderBy($prioridad, ($prioridad === 'rendimiento') ? 'asc' : 'desc')
+                    ->get();
+
+        return view('comparar.precio_resultados', compact('autos', 'precioBase', 'rango', 'prioridad'));
     }
 }

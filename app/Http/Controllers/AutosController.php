@@ -10,7 +10,7 @@ class AutosController
 
     public function index()
     {
-        $autos = Autos::latest()->paginate(3);
+        $autos = Autos::latest()->paginate(5);
         return view('autos.indexAuto', compact('autos'))->with(request()->input('page'));
     }
     //------- vista para crear un nuevo auto -------
