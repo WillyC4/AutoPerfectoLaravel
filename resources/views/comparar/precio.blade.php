@@ -4,7 +4,10 @@
 <div class="container">
     <h2 class="text-center my-4 fw-bold text-primary">Buscar tu AutoPerfecto</h2>
 
-    <form action="{{ route('comparar.precio_resultados') }}" method="GET" class="card p-4 shadow-lg mx-auto" style="max-width: 500px;">
+    <form action="{{ route('comparar.resultado') }}" method="GET" class="card p-4 shadow-lg mx-auto" style="max-width: 500px;">
+        {{-- Input oculto para indicar el tipo de comparador --}}
+        <input type="hidden" name="tipo" value="precio">
+
         <div class="mb-3">
             <label for="precio" class="form-label fw-bold">Precio Base:</label>
             <input type="number" class="form-control" name="precio" id="precio" required>

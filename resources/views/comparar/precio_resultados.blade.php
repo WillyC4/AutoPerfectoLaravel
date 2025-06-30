@@ -4,12 +4,19 @@
 <div class="container">
     <h2 class="text-center my-4 fw-bold text-primary">Autos Disponibles</h2>
 
+    @php
+        $precioBase = request()->input('precio');
+        $rango = request()->input('rango');
+        $prioridad = request()->input('prioridad');
+    @endphp
+
     <h4 class="text-center">
         Rango: ${{ number_format($precioBase - $rango, 0) }} a ${{ number_format($precioBase + $rango, 0) }} y 
         Prioridad: {{ ucfirst($prioridad) }}
     </h4>
     <br>
-    @if ($autos->count() > 0)
+
+    @if ($resultado->count() > 0)
         <table class="table table-striped">
             <thead class="table-dark">
                 <tr>
@@ -23,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($autos as $auto)
+                @foreach ($resultado as $auto)
                 <tr>
                     <td>{{ $auto->marca }}</td>
                     <td>{{ $auto->modelo }}</td>

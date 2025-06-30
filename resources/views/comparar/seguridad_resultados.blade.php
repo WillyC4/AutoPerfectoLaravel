@@ -3,9 +3,16 @@
 @section('content')
 <div class="container mt-5">
     <div class="card shadow-lg p-5 rounded-lg">
-        <h2 class="text-primary fw-bold text-center">Comparación de Seguridad con {{ ucfirst($criterioExtra) }}</h2>
+        @php
+            $criterioExtra = request()->input('criterio', 'rendimiento');
+        @endphp
+
+        <h2 class="text-primary fw-bold text-center">
+            Comparación de Seguridad con {{ ucfirst($criterioExtra) }}
+        </h2>
         <br>
-        @if ($autos->count() > 0)
+
+        @if ($resultado->count() > 0)
             <div class="table-responsive">
                 <table class="table table-striped text-center">
                     <thead class="bg-primary text-white">
@@ -18,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($autos as $auto)
+                        @foreach ($resultado as $auto)
                         <tr>
                             <td>{{ $auto->marca }}</td>
                             <td>{{ $auto->modelo }}</td>
@@ -31,7 +38,9 @@
                 </table>
             </div>
         @else
-            <p class="text-center fw-bold text-danger mt-4">No hay autos disponibles para esta comparación.</p>
+            <p class="text-center fw-bold text-danger mt-4">
+                No hay autos disponibles para esta comparación.
+            </p>
         @endif
     </div>
 </div>
